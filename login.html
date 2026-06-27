@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <header></header>
+
+    <main>
+        <div class="container text-center py-3">
+            <form action="login.html" id="formLogin">
+                <input type="text" id="loginInput" placeholder="Login">
+                <input type="password" id="senhaInput" placeholder="Senha">
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </main>
+        
+    <footer></footer>
+
+    <script src="assets/js/app.js"></script>
+    <script>
+        document.getElementById("formLogin").addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const login = document.getElementById("loginInput").value;
+            const senha = document.getElementById("senhaInput").value;
+
+            if(loginUser(login, senha)){
+                location.href = 'index.html';
+            } else{
+                alert('Login ou senha incorretos.')
+            }
+        })
+    </script>
+</body>
+</html>

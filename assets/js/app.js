@@ -296,8 +296,43 @@ const dados = {
                 }
             ]
         }
+    ],
+    "usuarios":[
+        {id: 1, nome: "Ana Carolina", login: "ana", senha: "ana123", email: "ana@gmail.com"},
+        {id: 2, nome: "Maria Clara", login: "maria", senha: "maria123", email: "maria@gmail.com"}
     ]
 };
+
+//variável que mantem os dados do usuário logado
+let usuario = null;
+
+function checkLoggedUser(){
+    const usuarioStr = sessionStorage.getItem('usuario');
+
+    if(!usuarioStr){
+        location.href = 'login.html';
+    }
+
+    usuario = JSON.parse(usuarioStr);
+    return true;
+}
+
+function loginUser(login, senha){
+    const usuarioObj = dados.usuarios.find(elem => (elem.login === login) && (elem.senha === senha));
+
+    if(!usuarioObj){
+        return false;
+    }
+    else{
+        sessionStorage.setItem('usuario', JSON.stringify(usuarioObj));
+        return true;
+    }
+}
+
+function logoutUser(){
+    sessionStorage.clear();
+    location.href = 'login.html';
+}
 
 function carregarCarrossel() {
     const indicadores = document.getElementById("carouselIndicators");
