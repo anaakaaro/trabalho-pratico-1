@@ -253,3 +253,36 @@ h6 {
     transform: scale(1.05);
 }
 
+/* form do login */
+.login-card{
+    width:100%;
+    max-width:430px;
+    border:none;
+    border-radius:22px;
+    padding:35px;
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
+}
+
+.login-card:hover{
+    transform:none;
+}
+
+.login-card .form-control{
+    height:50px;
+    border-radius:12px;
+}
+
+.login-card .form-control:focus{
+    box-shadow:0 0 0 .2rem rgba(103,57,189,.15);
+}
+
+.login-card .btn{
+    height:50px;
+    border-radius:12px;
+    font-weight:600;
+}
+
+.form-label{
+    font-weight:600;
+}
+/* fim form do login */
