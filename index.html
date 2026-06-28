@@ -30,12 +30,16 @@
                         <a class="nav-link active" href="#"> Home </a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item d-none" id="menu-favoritos">
                         <a class="nav-link" href="#"> Favoritos </a>
                     </li>
 
                     <li class="nav-item" id="login">
                         <a class="nav-link" href="#" id="text-login"> Login </a>
+                    </li>
+
+                    <li class="nav-item d-none" id="menu-cadastrar">
+                        <a class="nav-link" href="cadastro_itens.html">Cadastrar</a>
                     </li>
 
                     <li class="nav-item d-none" id="usuario-logado">
@@ -86,6 +90,29 @@
         <!-- CARDS -->
          <div class="mx-2 mx-md-4 mb-5">
             <h3 class="subtitulo">Todos os Projetos</h3>
+            
+            <form id="formPesquisa" class="mb-4">
+
+                <div class="input-group shadow-sm">
+
+                    <span class="input-group-text bg-white border-end-0">
+                        <i class="bi bi-search"></i>
+                    </span>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="pesquisaProjeto"
+                        placeholder="Pesquisar projeto">
+
+                    <button class="btn px-4" type="submit">
+                        Buscar
+                    </button>
+
+                </div>
+
+            </form>
+
             <div class="row row-cols-1 row-cols-md-4 g-4" id="listaProjetos"></div>
          </div>
         <!-- FIM CARDS -->

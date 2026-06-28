@@ -303,8 +303,8 @@ if(!localStorage.getItem("projetos")) {
 
 if(!localStorage.getItem("usuarios")) {
     const usuarios = [
-            {id: 1, nome: "Ana Carolina", login: "ana", senha: "ana123", email: "ana@gmail.com"},
-            {id: 2, nome: "Maria Clara", login: "maria", senha: "maria123", email: "maria@gmail.com"}
+            {id: 1, nome: "Ana Carolina", login: "ana", senha: "ana123", email: "ana@gmail.com", admin: true},
+            {id: 2, nome: "Maria Clara", login: "maria", senha: "maria123", email: "maria@gmail.com", admin: false}
         ];
 
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
@@ -360,7 +360,8 @@ function cadastroUser(login, nome, email, senha){
         nome: nome,
         login: login,
         email: email,
-        senha: senha
+        senha: senha,
+        admin: false
     });
 
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
@@ -424,10 +425,13 @@ if (document.getElementById("carouselIndicators")) {
     carregarCarrossel();
 }
 
-function carregarCards() {
+function carregarCards(listaProjetos = projetos) {
     const container = document.getElementById("listaProjetos");
 
-    projetos.forEach((projeto) => {
+    container.innerHTML = "";
+
+
+    listaProjetos.forEach((projeto) => {
         container.innerHTML += `
             <div class="col">
                 <div class="card h-100 shadow-sm">
@@ -440,14 +444,57 @@ function carregarCards() {
                     <div class="card-body">
                         <h5 class="card-title">${projeto.nome}</h5>
                         <p class="card-text">${projeto.descricao}</p>
-
-                        <a href="detalhes.html?id=${projeto.id}" class="btn">Detalhes</a>
+                        
+                        <div class="row"> 
+                            <div class="col-8">
+                                <a href="detalhes.html?id=${projeto.id}" class="btn">Detalhes</a>
+                            </div>
+                            <div class="col-4">
+                                <button type="button" class="btn btn-secondary" title="Adicionar aos favoritos">
+                                    <i class="bi bi-bookmark-heart-fill"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
         `;
     });
 }
+
+function pesquisarProjetos(event){
+
+    event.preventDefault();
+
+    const texto = document.getElementById("pesquisaProjeto").value.trim().toLowerCase();
+
+     if (texto === "") {
+        carregarCards();
+        return;
+    }
+
+    const resultado = projetos.filter(projeto =>
+        projeto.nome.toLowerCase().includes(texto) ||
+        projeto.local.toLowerCase().includes(texto) ||
+        projeto.descricao.toLowerCase().includes(texto)
+    );
+
+    carregarCards(resultado);
+}
+
+document
+    .getElementById("formPesquisa")
+    .addEventListener("submit", pesquisarProjetos);
+
+document.getElementById("pesquisaProjeto")
+.addEventListener("input", function(){
+
+    if(this.value.trim() === ""){
+        carregarCards();
+    }
+
+});
 
 if (document.getElementById("listaProjetos")) {
     carregarCards();
@@ -516,6 +563,8 @@ function atualizarMenu() {
     const itemUsuario = document.getElementById("usuario-logado");
     const nomeUsuario = document.getElementById("nome-usuario");
     const textoLogin = document.getElementById("text-login");
+    const menuCadastrar = document.getElementById("menu-cadastrar");
+    const menuFavoritos = document.getElementById("menu-favoritos");
 
     if (usuarioLogado) {
 
@@ -527,7 +576,14 @@ function atualizarMenu() {
         itemUsuario.classList.remove("d-none");
 
         textoLogin.innerText = "Logout";
-        textoLogin.href = "#";
+        textoLogin.href = "login.html";
+        menuFavoritos.classList.remove("d-none");
+
+        if(usuario.admin){
+            menuCadastrar.classList.remove("d-none");
+        }else{
+            menuCadastrar.classList.add("d-none");
+        }
 
     } else {
 
@@ -535,6 +591,8 @@ function atualizarMenu() {
 
         textoLogin.innerText = "Login";
         textoLogin.href = "login.html";
+        menuCadastrar.classList.add("d-none");
+        menuFavoritos.classList.add("d-none");
 
     }
 }
