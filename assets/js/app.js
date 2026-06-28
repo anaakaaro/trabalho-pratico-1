@@ -508,3 +508,47 @@ if (document.getElementById("informacoesProjeto")) {
     exibirDetalhes();
 }
 
+function atualizarMenu() {
+
+    const usuarioLogado = JSON.parse(sessionStorage.getItem("usuario"));
+
+    const itemLogin = document.getElementById("login");
+    const itemUsuario = document.getElementById("usuario-logado");
+    const nomeUsuario = document.getElementById("nome-usuario");
+    const textoLogin = document.getElementById("text-login");
+
+    if (usuarioLogado) {
+
+        usuario = usuarioLogado;
+
+        nomeUsuario.innerHTML =
+            `<i class="bi bi-person-circle"></i> ${usuario.nome}`;
+
+        itemUsuario.classList.remove("d-none");
+
+        textoLogin.innerText = "Logout";
+        textoLogin.href = "#";
+
+    } else {
+
+        itemUsuario.classList.add("d-none");
+
+        textoLogin.innerText = "Login";
+        textoLogin.href = "login.html";
+
+    }
+}
+
+document.getElementById("login").addEventListener("click", function (e) {
+
+    if (sessionStorage.getItem("usuario")) {
+        e.preventDefault();
+        logoutUser();
+    }
+
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    atualizarMenu();
+});
+
