@@ -136,6 +136,12 @@ main h2::after {
     color: white;
 }
 
+.btn {
+    border-radius: 50px;
+    background-color: #6739bd;
+    color: white;
+}
+
 /* ===== DETALHES ALUNO ===== */
 
 .mt-5 h4 {

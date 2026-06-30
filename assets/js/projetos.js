@@ -81,16 +81,16 @@ function carregarCards(listaProjetos) {
                             </div>
                             <div class="col-4">
                                 <button
-    type="button"
-    class="btn btn-secondary"
-    onclick="adicionarFavorito(${projeto.id})"
-    title="${projetoFavorito(projeto.id) ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    onclick="adicionarFavorito(${projeto.id})"
+                                    title="${projetoFavorito(projeto.id) ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">
 
-    <i class="bi ${projetoFavorito(projeto.id)
-        ? 'bi-bookmark-heart-fill'
-        : 'bi-bookmark-heart'}"></i>
+                                    <i class="bi ${projetoFavorito(projeto.id)
+                                        ? 'bi-bookmark-heart-fill'
+                                        : 'bi-bookmark-heart'}"></i>
 
-</button>
+                                </button>
                             </div>
                         </div>
                         
