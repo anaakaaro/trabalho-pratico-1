@@ -19,7 +19,12 @@ function atualizarMenu() {
         itemUsuario.classList.remove("d-none");
 
         textoLogin.innerText = "Logout";
-        textoLogin.href = "login.html";
+        textoLogin.href = "#";
+
+        textoLogin.onclick = function (e) {
+            e.preventDefault();
+            logoutUser();
+        };
         menuFavoritos.classList.remove("d-none");
 
         if(usuario.admin){
