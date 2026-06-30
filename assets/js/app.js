@@ -303,8 +303,8 @@ if(!localStorage.getItem("projetos")) {
 
 if(!localStorage.getItem("usuarios")) {
     const usuarios = [
-            {id: 1, nome: "Ana Carolina", login: "ana", senha: "ana123", email: "ana@gmail.com", admin: true},
-            {id: 2, nome: "Maria Clara", login: "maria", senha: "maria123", email: "maria@gmail.com", admin: false}
+            {id: 1, nome: "Ana Carolina", login: "ana", senha: "ana123", email: "ana@gmail.com", admin: true, favoritos: []},
+            {id: 2, nome: "Maria Clara", login: "maria", senha: "maria123", email: "maria@gmail.com", admin: false, favoritos: []}
         ];
 
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
@@ -361,7 +361,8 @@ function cadastroUser(login, nome, email, senha){
         login: login,
         email: email,
         senha: senha,
-        admin: false
+        admin: false,
+        favoritos: []
     });
 
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
@@ -450,9 +451,17 @@ function carregarCards(listaProjetos = projetos) {
                                 <a href="detalhes.html?id=${projeto.id}" class="btn">Detalhes</a>
                             </div>
                             <div class="col-4">
-                                <button type="button" class="btn btn-secondary" title="Adicionar aos favoritos">
-                                    <i class="bi bi-bookmark-heart-fill"></i>
-                                </button>
+                                <button
+                                type="button"
+                                class="btn btn-secondary"
+                                onclick="adicionarFavorito(${projeto.id})"
+                                title="${projetoFavorito(projeto.id) ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">
+
+                                <i class="bi ${projetoFavorito(projeto.id)
+                                    ? 'bi-bookmark-heart-fill'
+                                    : 'bi-bookmark-heart'}"></i>
+
+                            </button>
                             </div>
                         </div>
                         
@@ -483,21 +492,50 @@ function pesquisarProjetos(event){
     carregarCards(resultado);
 }
 
-document
-    .getElementById("formPesquisa")
-    .addEventListener("submit", pesquisarProjetos);
-
-document.getElementById("pesquisaProjeto")
-.addEventListener("input", function(){
-
-    if(this.value.trim() === ""){
-        carregarCards();
-    }
-
-});
 
 if (document.getElementById("listaProjetos")) {
     carregarCards();
+}
+
+function adicionarFavorito(idProjeto) {
+
+    const usuario = JSON.parse(sessionStorage.getItem("usuario"));
+
+    if (!usuario) {
+        alert("Faça login para adicionar favoritos.");
+        return;
+    }
+
+    const usuarios = JSON.parse(localStorage.getItem("usuarios"));
+
+    const usuarioEncontrado = usuarios.find(u => u.id === usuario.id);
+
+    if (!usuarioEncontrado.favoritos) {
+        usuarioEncontrado.favoritos = [];
+    }
+
+    const indice = usuarioEncontrado.favoritos.indexOf(idProjeto);
+
+    if (indice >= 0) {
+        usuarioEncontrado.favoritos.splice(indice, 1);
+    } else {
+        usuarioEncontrado.favoritos.push(idProjeto);
+    }
+
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+    sessionStorage.setItem("usuario", JSON.stringify(usuarioEncontrado));
+
+    carregarCards();
+}
+
+function projetoFavorito(idProjeto){
+    const usuario = JSON.parse(sessionStorage.getItem("usuario"));
+
+    if(!usuario || !usuario.favoritos){
+        return false;
+    }
+
+    return usuario.favoritos.includes(idProjeto);
 }
 
 
@@ -609,4 +647,18 @@ document.getElementById("login").addEventListener("click", function (e) {
 document.addEventListener("DOMContentLoaded", () => {
     atualizarMenu();
 });
+
+document
+    .getElementById("formPesquisa")
+    .addEventListener("submit", pesquisarProjetos);
+
+document.getElementById("pesquisaProjeto")
+.addEventListener("input", function(){
+
+    if(this.value.trim() === ""){
+        carregarCards();
+    }
+
+});
+
 
