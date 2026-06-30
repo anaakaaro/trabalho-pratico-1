@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cadastro de Usuário</title>
+    <title>Favoritos</title>
 
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -36,15 +36,15 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav gap-lg-2">
                     <li class="nav-item">
-                        <a class="nav-link" href="#"> Home </a>
+                        <a class="nav-link" href="index.html"> Home </a>
                     </li>
 
                     <li class="nav-item d-none" id="menu-favoritos">
-                        <a class="nav-link active" href="#"> Favoritos </a>
+                        <a class="nav-link active" href="favoritos"> Favoritos </a>
                     </li>
 
                     <li class="nav-item" id="login">
-                        <a class="nav-link" href="#" id="text-login"> Login </a>
+                        <a class="nav-link" href="login.html" id="text-login"> Login </a>
                     </li>
 
                     <li class="nav-item d-none" id="menu-cadastrar">
@@ -60,7 +60,39 @@
         </div>
     </header>
 
-    <main></main>
+    <main class="container my-5">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <div>
+
+                <h3 class="mb-4 subtitulo">
+                    Favoritos
+                </h3>
+
+                <p class="text-muted mb-0">
+                    Aqui estão todos os projetos que você marcou como favoritos.
+                </p>
+
+            </div>
+
+            <a
+                href="index.html"
+                class="btn">
+
+                <i class="bi bi-arrow-left"></i>
+
+                Voltar
+
+            </a>
+
+        </div>
+
+        <div id="listaProjetos" class="row g-4"> 
+
+        </div>
+
+    </main>
 
     <footer></footer>
 
@@ -72,6 +104,13 @@
       crossorigin="anonymous"
     ></script>
 
-    <script src="assets/js/app.js"></script>
+    <script src="assets/js/database.js"></script>
+    <script src="assets/js/storage.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/menu.js"></script>
+    <script src="assets/js/projetos.js"></script>
+
+    <script src="assets/js/favoritos.js"></script>
+    <script src="assets/js/favoritosPag.js"></script>
   </body>
 </html>

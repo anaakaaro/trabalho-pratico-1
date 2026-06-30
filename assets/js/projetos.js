@@ -50,7 +50,7 @@ if (document.getElementById("carouselIndicators")) {
     carregarCarrossel();
 }
 
-function carregarCards(listaProjetos) {
+function carregarCards(listaProjetos = getProjetos()) {
 
     if(!listaProjetos){
         listaProjetos = getProjetos();

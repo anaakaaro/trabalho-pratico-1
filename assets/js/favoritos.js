@@ -1,8 +1,3 @@
-const usuario = JSON.parse(sessionStorage.getItem("usuario"));
-
-if (!usuario) {
-    window.location.href = "login.html";
-}
 
 function projetoFavorito(idProjeto) {
     const usuario = JSON.parse(sessionStorage.getItem("usuario"));
@@ -44,6 +39,13 @@ function adicionarFavorito(idProjeto) {
 
     if (document.getElementById("listaProjetos")) {
         carregarCards();
+    }
+
+    if (document.getElementById("listaProjetos") &&
+        window.location.pathname.includes("favoritos")) {
+
+        carregarFavoritos();
+
     }
 }
 
