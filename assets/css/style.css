@@ -1,4 +1,4 @@
-/* ===== GERAL ===== */
+/* body */
 
 body {
     background: #f5f7fa;
@@ -6,7 +6,9 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* ===== HEADER ===== */
+/* fim body */
+
+/* header */
 
 header {
     background: white;
@@ -35,7 +37,9 @@ header .fs-3 {
     background-color: #6739bd;
 }
 
-/* ===== TÍTULO PRINCIPAL ===== */
+/* fim header */
+
+/* titulo */
 
 main h2 {
     color: #1f2937;
@@ -48,11 +52,13 @@ main h2::after {
     width: 120px;
     height: 4px;
     background: #6739bd;
-    margin: 15px auto 0;
+    margin-top: 15px;
     border-radius: 20px;
 }
 
-/* ===== SUBTÍTULOS ===== */
+/* fim titulo */
+
+/* subtitulo */
 
 .subtitulo {
     font-size: 1.8rem;
@@ -63,7 +69,9 @@ main h2::after {
     padding-left: 12px;
 }
 
-/* ===== CARROSSEL ===== */
+/* fim subtitulo */
+
+/* carrossel */
 
 #myCarousel {
     border-radius: 20px;
@@ -101,7 +109,9 @@ main h2::after {
     color: white;
 }
 
-/* ===== CARDS ===== */
+/* carrossel */
+
+/* cards */
 
 .card {
     border: none;
@@ -142,7 +152,9 @@ main h2::after {
     color: white;
 }
 
-/* ===== DETALHES ALUNO ===== */
+/* dim cards */
+
+/* sobre */
 
 .mt-5 h4 {
     font-weight: 700;
@@ -179,6 +191,8 @@ h6 {
     transform: scale(1.15);
     color: #6739bd;
 }
+
+/* fim sobre */
 
 /* ===== RESPONSIVIDADE ===== */
 

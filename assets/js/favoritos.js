@@ -1,3 +1,9 @@
+const usuario = JSON.parse(sessionStorage.getItem("usuario"));
+
+if (!usuario) {
+    window.location.href = "login.html";
+}
+
 function projetoFavorito(idProjeto) {
     const usuario = JSON.parse(sessionStorage.getItem("usuario"));
 
