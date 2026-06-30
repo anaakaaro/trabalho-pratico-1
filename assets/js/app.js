@@ -426,6 +426,16 @@ if (document.getElementById("carouselIndicators")) {
     carregarCarrossel();
 }
 
+function projetoFavorito(idProjeto) {
+    const usuario = JSON.parse(sessionStorage.getItem("usuario"));
+
+    if (!usuario || !usuario.favoritos) {
+        return false;
+    }
+
+    return usuario.favoritos.includes(idProjeto);
+}
+
 function carregarCards(listaProjetos = projetos) {
     const container = document.getElementById("listaProjetos");
 
@@ -452,16 +462,16 @@ function carregarCards(listaProjetos = projetos) {
                             </div>
                             <div class="col-4">
                                 <button
-                                type="button"
-                                class="btn btn-secondary"
-                                onclick="adicionarFavorito(${projeto.id})"
-                                title="${projetoFavorito(projeto.id) ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">
+    type="button"
+    class="btn btn-secondary"
+    onclick="adicionarFavorito(${projeto.id})"
+    title="${projetoFavorito(projeto.id) ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">
 
-                                <i class="bi ${projetoFavorito(projeto.id)
-                                    ? 'bi-bookmark-heart-fill'
-                                    : 'bi-bookmark-heart'}"></i>
+    <i class="bi ${projetoFavorito(projeto.id)
+        ? 'bi-bookmark-heart-fill'
+        : 'bi-bookmark-heart'}"></i>
 
-                            </button>
+</button>
                             </div>
                         </div>
                         
