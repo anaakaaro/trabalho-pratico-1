@@ -56,6 +56,16 @@ main h2::after {
     border-radius: 20px;
 }
 
+.bem-vindo::after {
+    content: "";
+    display: block;
+    width: 120px;
+    height: 4px;
+    background: #6739bd;
+    margin: 15px auto 0;
+    border-radius: 20px;
+}
+
 /* fim titulo */
 
 /* subtitulo */

@@ -52,20 +52,24 @@ if (document.getElementById("carouselIndicators")) {
 
 function carregarCards(listaProjetos = getProjetos()) {
 
-    if(!listaProjetos){
-        listaProjetos = getProjetos();
-    }
-
     const container = document.getElementById("listaProjetos");
+    const usuario = JSON.parse(sessionStorage.getItem("usuario"));
 
-    container.innerHTML = "";
+    let html = "";
 
 
     listaProjetos.forEach((projeto) => {
-        container.innerHTML += `
+
+        const favorito =
+            usuario &&
+            usuario.favoritos &&
+            usuario.favoritos.includes(projeto.id);
+
+        html += `
             <div class="col">
                 <div class="card h-100 shadow-sm">
                     <img
+                        loading="lazy" 
                         src="${projeto.imagens[0].link}"
                         class="card-img-top card-img-projeto"
                         alt="${projeto.nome}"
@@ -82,11 +86,11 @@ function carregarCards(listaProjetos = getProjetos()) {
                             <div class="col-4">
                                 <button
                                     type="button"
-                                    class="btn btn-secondary"
+                                    class="btn"
                                     onclick="adicionarFavorito(${projeto.id})"
-                                    title="${projetoFavorito(projeto.id) ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">
+                                    title="${favorito ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">
 
-                                    <i class="bi ${projetoFavorito(projeto.id)
+                                    <i class="bi ${favorito
                                         ? 'bi-bookmark-heart-fill'
                                         : 'bi-bookmark-heart'}"></i>
 
@@ -99,6 +103,8 @@ function carregarCards(listaProjetos = getProjetos()) {
             </div>
         `;
     });
+
+    container.innerHTML = html;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
